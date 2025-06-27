@@ -46,13 +46,6 @@ export const projectsQuery = `
           ) {
           object {
             name
-            progresses {
-              group {
-                members {
-                  userLogin
-                }
-              }
-            }
           }
           amount
           createdAt
