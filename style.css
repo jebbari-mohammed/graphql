@@ -119,8 +119,48 @@ body {
 
 .level-xp {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    gap: 48px;
+    justify-content: center;
+    align-items: stretch;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 36px 0;
+    width: 100%;
+}
+
+.xp-box, .level-box {
+    background: rgba(255,255,255,0.92);
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(102,126,234,0.15);
+    padding: 28px 40px;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    border: 2px solid #e1e5e9;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.xp-box:hover, .level-box:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(102,126,234,0.18);
+}
+
+.xp-label, .level-label {
+    font-size: 0.95rem;
+    color: #764ba2;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.xp-value, .level-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
 }
 
 #log-out {
@@ -227,37 +267,71 @@ body {
 
 /* Projects Graph Specific Styles */
 .projects-graph-container {
-    background: rgba(255, 255, 255, 0.95);
     margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    padding: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
-    overflow: hidden;
-    width: 100%;
-    max-width: 100%;
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.projects-graph-container h2 {
+/* Graphs Container Styles */
+.graphs-container {
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.graphs-container h1 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
-    font-size: 1.8rem;
-    z-index: 10;
-    position: relative;
+    font-size: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.projects-graph-container svg {
+.projects-graph-section, .audit-graph-section {
+    padding: 20px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
-    display: block;
-    margin: 0 auto;
-    overflow: visible;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: 400px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects-graph-section {
+    background: rgba(102, 126, 234, 0.05);
+    border-left: 4px solid #667eea;
+}
+
+.audit-graph-section {
+    background: rgba(231, 76, 60, 0.05);
+    border-left: 4px solid #e74c3c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projects-graph-section:hover, .audit-graph-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.projects-graph-section h2, .audit-graph-section h2 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Audit Graph Specific Styles */
@@ -374,95 +448,77 @@ body {
         gap: 15px;
         text-align: center;
     }
-    
-    .profile-container {
+
+    .graphs-container {
         margin: 10px;
+        padding: 15px;
     }
-    
-    #loginForm {
-        min-width: 300px;
-        padding: 30px 20px;
-    }
-    
-    .login-container h2 {
-        font-size: 2rem;
-    }
-    
-    .projects-graph-container {
-        margin: 10px;
-        padding: 20px;
-    }
-    
-    .projects-graph-container h2 {
+
+    .graphs-container h1 {
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
-    
-    .audit-graph-container {
-        width: 40vw;
-        height: 30vh;
-        min-width: 280px;
-        min-height: 180px;
-        margin: 10px auto;
-        padding: 12px;
+
+    .projects-graph-section, .audit-graph-section {
+        padding: 15px;
+        margin-bottom: 15px;
     }
-    
-    .audit-graph-container h2 {
-        font-size: 1.1rem;
-        margin-bottom: 8px;
+
+    .level-xp {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
     }
-    
-    .audit-graph-container svg {
-        max-height: 180px;
-        max-width: 320px;
+
+    .xp-box, .level-box {
+        min-width: 140px;
+        padding: 20px 30px;
+    }
+
+    .profile-container {
+        margin: 10px;
+    }
+
+    #about-user-info p {
+        font-size: 0.9rem;
+        padding: 8px;
     }
 }
 
 @media (max-width: 480px) {
-    #about-user-info {
-        padding: 20px;
+    .login-container {
+        padding: 10px;
     }
-    
-    #about-user-info p {
-        padding: 8px;
+
+    #loginForm {
+        min-width: 280px;
+        padding: 30px 20px;
     }
-    
+
+    .login-container h2 {
+        font-size: 2rem;
+    }
+
+    .graphs-container {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .graphs-container h1 {
+        font-size: 1.3rem;
+    }
+
+    .projects-graph-section, .audit-graph-section {
+        padding: 10px;
+    }
+
+    .projects-graph-section h2, .audit-graph-section h2 {
+        font-size: 1.2rem;
+    }
+
     #about-user-info strong {
         min-width: 100px;
         font-size: 0.9rem;
-    }
-    
-    .projects-graph-container {
-        margin: 5px;
-        padding: 15px;
-    }
-    
-    .projects-graph-container h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-    
-    .audit-graph-container {
-        width: 60vw;
-        height: 35vh;
-        min-width: 250px;
-        min-height: 150px;
-        margin: 8px auto;
-        padding: 10px;
-    }
-    
-    .audit-graph-container h2 {
-        font-size: 1rem;
-        margin-bottom: 5px;
-    }
-    
-    .audit-graph-container svg {
-        max-height: 150px;
-        max-width: 260px;
-    }
-    
-    .audit-graph-container svg {
-        max-height: 200px;
     }
 }
 
